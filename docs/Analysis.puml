@@ -1,0 +1,37 @@
+@startuml
+skin rose
+
+entity Workday
+entity Date
+entity Rating
+entity GoodThing
+entity BadThing
+entity ProposedSolution
+
+control ReflectAboutWorkday
+control ReviewPreviousReflection
+
+boundary WorkdayFormulary
+boundary WorkdayResume
+boundary WorkdaysRepository
+boundary DigitalCalendar as "Calendar"
+
+Workday --> Date
+Workday --> Rating
+Workday o--> GoodThing
+Workday o--> BadThing
+BadThing -- ProposedSolution
+
+ReflectAboutWorkday ..> Workday
+ReflectAboutWorkday .u.> WorkdaysRepository
+
+ReviewPreviousReflection ..> Workday
+ReviewPreviousReflection .u.> WorkdaysRepository
+ReviewPreviousReflection .u.> WorkdayResume : displays in
+
+DigitalCalendar --> ReviewPreviousReflection
+DigitalCalendar ..> Workday
+WorkdayFormulary --> ReflectAboutWorkday
+WorkdayFormulary ..> Workday
+
+@enduml
