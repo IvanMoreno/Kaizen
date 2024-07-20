@@ -1,0 +1,15 @@
+@startuml
+skin rose
+left to right direction
+
+actor User
+
+package Kaizen{
+    usecase ReflectAboutWorkday
+    usecase ReviewPreviousReflections
+}
+
+User --> ReflectAboutWorkday : today
+User --> ReviewPreviousReflections : tomorrow
+
+@enduml
