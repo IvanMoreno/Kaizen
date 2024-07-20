@@ -1,0 +1,10 @@
+@startuml
+skin rose
+
+[*] --> RateWorkday
+RateWorkday --> ListGoodThings
+ListGoodThings --> ListBadThings
+ListBadThings --> FindSolutionsToBadThings
+FindSolutionsToBadThings --> [*]
+
+@enduml
