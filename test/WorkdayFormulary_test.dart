@@ -12,10 +12,12 @@ import 'package:kaizen/main.dart';
 // [] Save workday in repository
 
 void main() {
-  testWidgets('All formulary fields are empty by default', (WidgetTester tester) async {
-    
-    await tester.pumpWidget(const MaterialApp(home: Scaffold(body:WorkdayFormulary())));
+  testWidgets('All formulary fields are empty by default',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(body: WorkdayFormulary(() => DateTime(2024, 7, 1)))));
 
     expect(find.text("No Rating"), findsOne);
+    expect(find.text("July 1 - 2024"), findsOne);
   });
 }

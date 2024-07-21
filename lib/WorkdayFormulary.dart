@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WorkdayFormulary extends StatefulWidget {
-  const WorkdayFormulary({super.key});
+  final DateTime Function() today;
+  
+  const WorkdayFormulary(this.today, {super.key});
 
   @override
   State<WorkdayFormulary> createState() => _WorkdayFormularyState();
