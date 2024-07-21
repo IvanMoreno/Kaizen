@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kaizen/BadThing.dart';
 import 'package:kaizen/BadThingEntry.dart';
+import 'package:kaizen/GoodThing.dart';
 import 'package:kaizen/GoodThingField.dart';
 import 'package:kaizen/Repository.dart';
+import 'package:kaizen/Workday.dart';
 
 class WorkdayFormulary extends StatefulWidget {
   final DateTime Function() today;
+  final WorkdaysRepository repository;
 
-  const WorkdayFormulary(this.today, WorkdaysRepository mockRepository, {super.key});
+  const WorkdayFormulary(this.today, this.repository, {super.key});
 
   @override
   State<WorkdayFormulary> createState() => _WorkdayFormularyState();
@@ -62,11 +66,14 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
         child: ListView.builder(
           key: const Key("AllBadThings"),
           itemCount: _allBadThings.length,
-          itemBuilder: (context, index){
+          itemBuilder: (context, index) {
             return _allBadThings[index];
           },
         ),
       );
 
-  Widget EndWorkday() => ElevatedButton(key: Key("EndWorkday"),onPressed: (){}, child: const Text("End"));
+  Widget EndWorkday() => ElevatedButton(
+      key: const Key("EndWorkday"), onPressed: () => widget.repository.Save(Today()), child: const Text("End"));
+
+  Workday Today() => Workday(date: widget.today(), rating: 1, goodThings: [GoodThing("something good")], badThings: [BadThing(issue: "something bad", proposedSolution: "a solution")]);
 }

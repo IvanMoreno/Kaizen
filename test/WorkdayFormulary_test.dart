@@ -2,10 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kaizen/BadThing.dart';
 import 'package:kaizen/BadThingField.dart';
+import 'package:kaizen/GoodThing.dart';
 import 'package:kaizen/GoodThingField.dart';
 import 'package:kaizen/ProposedSolutionField.dart';
 import 'package:kaizen/Repository.dart';
+import 'package:kaizen/Workday.dart';
 import 'package:kaizen/WorkdayFormulary.dart';
 
 // [] Rate day
@@ -58,13 +61,16 @@ void main() {
         Workday(date: DateTime(2024, 7, 1), rating: 1, goodThings: [
           GoodThing("something good")
         ], badThings: [
-          BadThing(issue: "something bad", solution: "a solution")
+          BadThing(issue: "something bad", proposedSolution: "a solution")
         ]));
   });
 }
 
 class MockRepository implements WorkdaysRepository {
   var LastSubmission;
+
+  @override
+  void Save(Workday today) => LastSubmission = today;
 }
 
 MaterialApp EmbedInApp(Widget widget) =>
