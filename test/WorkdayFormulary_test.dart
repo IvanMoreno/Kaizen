@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kaizen/GoodThingField.dart';
 import 'package:kaizen/WorkdayFormulary.dart';
 
 // [] Rate day
@@ -21,5 +22,8 @@ void main() {
         tester
             .widgetList<ListView>(find.byKey(const ValueKey("AllGoodThings"))).length,
         1);
+    
+    expect(
+      ((find.byType(GoodThingField).evaluate().single).widget as GoodThingField).Content, isEmpty);
   });
 }

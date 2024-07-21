@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kaizen/GoodThingField.dart';
 
 class WorkdayFormulary extends StatefulWidget {
   final DateTime Function() today;
@@ -32,5 +33,5 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   Widget Date() => Text(FormattedDate());
   String FormattedDate() => DateFormat("MMMM dd, yyyy").format(widget.today());
 
-  Widget AllGoodThings() => Expanded(child: ListView(key: const Key("AllGoodThings"),children: [Text("data")],));
+  Widget AllGoodThings() => Expanded(child: ListView(key: const Key("AllGoodThings"),children: [GoodThingField()],));
 }
