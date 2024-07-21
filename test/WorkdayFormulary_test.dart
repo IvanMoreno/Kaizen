@@ -64,6 +64,7 @@ void main() {
         await tester.SelectDropdownOption(dropdownKey: "RatingDropdown", option: "III");
         await tester.enterText(find.byType(GoodThingField).first, "a good thing");
         await tester.tap(find.byKey(const Key("AddGoodThing")));
+        await tester.pumpAndSettle();
         await tester.enterText(find.byType(GoodThingField).last, "another good thing");
         await tester.FillBadThing(issue: "something bad", proposedSolution: "a solution");
         await tester.tap(find.byKey(const Key("EndWorkday")));

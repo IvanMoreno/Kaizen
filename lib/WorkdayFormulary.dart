@@ -96,9 +96,11 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
       child: const Text("End"));
 
   Workday Today() =>
-      Workday(date: widget.today(), rating: int.parse(rating), goodThings: [
-        GoodThing("something good")
-      ], badThings: [
+      Workday(date: widget.today(), rating: int.parse(rating), goodThings: GoodThings(), badThings: [
         BadThing(issue: "something bad", proposedSolution: "a solution")
       ]);
+
+  List<GoodThing> GoodThings() {
+   return _allGoodThings.map((cause) => GoodThing(cause.Content)).toList();
+  }
 }
