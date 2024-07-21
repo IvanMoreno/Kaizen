@@ -7,5 +7,8 @@ class GoodThingField extends StatelessWidget {
   GoodThingField({super.key});
 
   @override
-  Widget build(BuildContext context) => TextField(controller: myController);
+  Widget build(BuildContext context) => TextField(decoration: const InputDecoration(
+    border: OutlineInputBorder(),
+    hintText: 'Enter good thing...',
+  ),controller: myController);
 }

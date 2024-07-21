@@ -11,7 +11,10 @@ class BadThingField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(controller: myController),
+        TextField(decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+          hintText: 'Enter bad thing...',
+        ),controller: myController),
       ],
     );
   }

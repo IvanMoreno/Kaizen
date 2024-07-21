@@ -7,5 +7,8 @@ class ProposedSolutionField extends StatelessWidget {
   ProposedSolutionField({super.key});
 
   @override
-  Widget build(BuildContext context) => TextField(controller: myController);
+  Widget build(BuildContext context) => TextField(decoration: const InputDecoration(
+    border: OutlineInputBorder(),
+    hintText: 'Propose a solution...',
+  ),controller: myController);
 }
