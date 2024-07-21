@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kaizen/BadThingField.dart';
+import 'package:kaizen/GoodThingField.dart';
 import 'package:kaizen/ProposedSolutionField.dart';
 
 extension WorkdayFormularyFilling on WidgetTester
@@ -12,5 +13,17 @@ extension WorkdayFormularyFilling on WidgetTester
     await enterText(find.byType(BadThingField).last, issue);
     await enterText(
         find.byType(ProposedSolutionField).last, proposedSolution);
+  }
+  
+  Future<void> FillSeveralGoodThings(List<String> causes)
+  async {
+    await enterText(find.byType(GoodThingField).first, causes.first);
+    
+    for(int i = 1; i < causes.length ;i++) 
+    {
+      await tap(find.byKey(const Key("AddGoodThing")));
+      await pumpAndSettle();
+      await enterText(find.byType(GoodThingField).last, causes[i]);
+    }
   }
 }

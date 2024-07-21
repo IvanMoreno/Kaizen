@@ -4,7 +4,6 @@ import 'package:kaizen/BadThing.dart';
 import 'package:kaizen/BadThingField.dart';
 import 'package:kaizen/GoodThing.dart';
 import 'package:kaizen/GoodThingField.dart';
-import 'package:kaizen/ProposedSolutionField.dart';
 import 'package:kaizen/Workday.dart';
 import 'package:kaizen/WorkdayFormulary.dart';
 
@@ -12,12 +11,12 @@ import 'CustomFinders.dart';
 import 'MockRepository.dart';
 import 'WorkdayFormularyFilling.dart';
 
-// [] Rate day
-// [] Assign today's date
-// [] Introduce good thing
-// [] Introduce bad thing
-//    [] Introduce solution to bad thing
-// [] Save workday in repository
+// [x] Rate day
+// [x] Assign today's date
+// [x] Introduce good thing
+// [x] Introduce bad thing
+//    [x] Introduce solution to bad thing
+// [x] Save workday in repository
 
 void main() {
   testWidgets('All formulary fields are empty by default',
@@ -62,15 +61,9 @@ void main() {
             EmbedInApp(WorkdayFormulary(() => DateTime(2024, 8, 3), mock)));
 
         await tester.SelectDropdownOption(dropdownKey: "RatingDropdown", option: "III");
-        
-        await tester.enterText(find.byType(GoodThingField).first, "a good thing");
-        await tester.tap(find.byKey(const Key("AddGoodThing")));
-        await tester.pumpAndSettle();
-        await tester.enterText(find.byType(GoodThingField).last, "another good thing");
-        
+        await tester.FillSeveralGoodThings(["a good thing", "another good thing"]);
         await tester.FillBadThing(issue: "a bad thing", proposedSolution: "one solution");
         await tester.FillBadThing(issue: "another bad thing", proposedSolution: "other solution");
-        
         await tester.tap(find.byKey(const Key("EndWorkday")));
 
         expect(
