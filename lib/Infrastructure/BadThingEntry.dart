@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kaizen/BadThingField.dart';
-import 'package:kaizen/ProposedSolutionField.dart';
+import 'package:kaizen/Infrastructure/BadThingField.dart';
+import 'package:kaizen/Infrastructure/ProposedSolutionField.dart';
 
 class BadThingEntry extends StatelessWidget {
   String get Content => badThing.Content;

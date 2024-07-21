@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kaizen/LocalRepository.dart';
-import 'package:kaizen/WorkdayFormulary.dart';
+import 'package:kaizen/Infrastructure/LocalRepository.dart';
+import 'package:kaizen/Infrastructure/WorkdayFormulary.dart';
 
 void main() {
   runApp(const MyApp());

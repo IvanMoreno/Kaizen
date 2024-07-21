@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:kaizen/BadThing.dart';
-import 'package:kaizen/GoodThing.dart';
+import 'package:kaizen/Domain/BadThing.dart';
+import 'package:kaizen/Domain/GoodThing.dart';
 
 class Workday {
   final DateTime date;

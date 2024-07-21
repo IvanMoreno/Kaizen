@@ -1,4 +1,4 @@
-import 'package:kaizen/Workday.dart';
+import 'package:kaizen/Domain/Workday.dart';
 
 abstract class WorkdaysRepository
 {

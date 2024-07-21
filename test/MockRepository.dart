@@ -1,5 +1,5 @@
-import 'package:kaizen/Repository.dart';
-import 'package:kaizen/Workday.dart';
+import 'package:kaizen/Infrastructure/Repository.dart';
+import 'package:kaizen/Domain/Workday.dart';
 
 class MockRepository implements WorkdaysRepository {
   var LastSubmission;
