@@ -16,8 +16,8 @@ import 'package:kaizen/WorkdayFormulary.dart';
 void main() {
   testWidgets('All formulary fields are empty by default',
       (WidgetTester tester) async {
-    
-    await tester.pumpWidget(EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1))));
+    await tester
+        .pumpWidget(EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1))));
 
     expect(find.text("No Rating"), findsOne);
     expect(find.text("July 01, 2024"), findsOne);
@@ -26,10 +26,27 @@ void main() {
     expect(tester.ExistsListWithKey("AllBadThings"), isTrue);
     expect(find.byType(BadThingField), findsNothing);
   });
+
+  testWidgets('Upload filled formulary to repository',
+      (WidgetTester tester) async {
+    
+    await tester
+        .pumpWidget(EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1))));
+
+    var ratingDropdown = find.byKey(const ValueKey("RatingDropdown"));
+    await tester.tap(ratingDropdown);
+    await tester.pumpAndSettle();
+    var firstRating = find.text("I").last;
+    await tester.tap(firstRating);
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(GoodThingField).first, "testing");
+    
+  });
 }
 
-MaterialApp EmbedInApp(Widget widget) 
-=> MaterialApp(home: Scaffold(body: widget));
+MaterialApp EmbedInApp(Widget widget) =>
+    MaterialApp(home: Scaffold(body: widget));
 
 T FirstWidget<T>() => find.byType(T).evaluate().single.widget as T;
 
