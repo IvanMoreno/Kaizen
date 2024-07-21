@@ -17,5 +17,9 @@ void main() {
 
     expect(find.text("No Rating"), findsOne);
     expect(find.text("July 01, 2024"), findsOne);
+    expect(
+        tester
+            .widgetList<ListView>(find.byKey(const ValueKey("AllGoodThings"))).length,
+        1);
   });
 }
