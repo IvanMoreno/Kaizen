@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kaizen/BadThing.dart';
@@ -7,7 +5,6 @@ import 'package:kaizen/BadThingField.dart';
 import 'package:kaizen/GoodThing.dart';
 import 'package:kaizen/GoodThingField.dart';
 import 'package:kaizen/ProposedSolutionField.dart';
-import 'package:kaizen/Repository.dart';
 import 'package:kaizen/Workday.dart';
 import 'package:kaizen/WorkdayFormulary.dart';
 
@@ -45,11 +42,7 @@ void main() {
     
     await tester.enterText(find.byType(GoodThingField).first, "something good");
 
-    await tester.tap(find.byKey(const Key("AddBadThing")));
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byType(BadThingField).first, "something bad");
-    await tester.enterText(
-        find.byType(ProposedSolutionField).first, "a solution");
+    await tester.FillBadThing(issue: "something bad", proposedSolution: "a solution");
 
     await tester.tap(find.byKey(const Key("EndWorkday")));
 
@@ -67,6 +60,18 @@ MaterialApp EmbedInApp(Widget widget) =>
     MaterialApp(home: Scaffold(body: widget));
 
 T FirstWidget<T>() => find.byType(T).evaluate().single.widget as T;
+
+extension WorkdayFormularyFilling on WidgetTester
+{
+  Future<void> FillBadThing({required String issue, required String proposedSolution})
+  async {
+    await tap(find.byKey(const Key("AddBadThing")));
+    await pumpAndSettle();
+    await enterText(find.byType(BadThingField).first, issue);
+    await enterText(
+        find.byType(ProposedSolutionField).first, proposedSolution);
+  }
+}
 
 extension CustomFinders on WidgetTester {
   bool ExistsListWithKey(String key) =>
