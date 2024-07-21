@@ -11,12 +11,8 @@ import 'CustomFinders.dart';
 import 'MockRepository.dart';
 import 'WorkdayFormularyFilling.dart';
 
-// [x] Rate day
-// [x] Assign today's date
-// [x] Introduce good thing
-// [x] Introduce bad thing
-//    [x] Introduce solution to bad thing
-// [x] Save workday in repository
+// [] Display hints in fields
+// [] Display buttons intention
 
 void main() {
   testWidgets('All formulary fields are empty by default',
