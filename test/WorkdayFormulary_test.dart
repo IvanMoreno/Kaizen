@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kaizen/Domain/BadThing.dart';
-import 'package:kaizen/Infrastructure/BadThingField.dart';
-import 'package:kaizen/Domain/GoodThing.dart';
-import 'package:kaizen/Infrastructure/GoodThingField.dart';
-import 'package:kaizen/Domain/Workday.dart';
-import 'package:kaizen/Infrastructure/WorkdayFormulary.dart';
+import 'package:kaizen/Domain/KaizenDomain.dart';
+import 'package:kaizen/Infrastructure/KaizenInfrastructure.dart';
 
 import 'CustomFinders.dart';
 import 'MockRepository.dart';

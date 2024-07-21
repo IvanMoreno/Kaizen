@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kaizen/Infrastructure/BadThingField.dart';
-import 'package:kaizen/Infrastructure/GoodThingField.dart';
-import 'package:kaizen/Infrastructure/ProposedSolutionField.dart';
+import 'package:kaizen/Infrastructure/KaizenInfrastructure.dart';
 
 extension WorkdayFormularyFilling on WidgetTester
 {
