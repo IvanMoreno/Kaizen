@@ -62,14 +62,17 @@ void main() {
             EmbedInApp(WorkdayFormulary(() => DateTime(2024, 8, 3), mock)));
 
         await tester.SelectDropdownOption(dropdownKey: "RatingDropdown", option: "III");
-        await tester.enterText(find.byType(GoodThingField).first, "something good");
+        await tester.enterText(find.byType(GoodThingField).first, "a good thing");
+        await tester.tap(find.byKey(const Key("AddGoodThing")));
+        await tester.enterText(find.byType(GoodThingField).last, "another good thing");
         await tester.FillBadThing(issue: "something bad", proposedSolution: "a solution");
         await tester.tap(find.byKey(const Key("EndWorkday")));
 
         expect(
             mock.LastSubmission,
             Workday(date: DateTime(2024, 8, 3), rating: 3, goodThings: [
-              GoodThing("something good")
+              GoodThing("a good thing"),
+              GoodThing("another good thing")
             ], badThings: [
               BadThing(issue: "something bad", proposedSolution: "a solution")
             ]));

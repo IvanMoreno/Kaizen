@@ -19,8 +19,9 @@ class WorkdayFormulary extends StatefulWidget {
 
 class _WorkdayFormularyState extends State<WorkdayFormulary> {
   final List<BadThingEntry> _allBadThings = List.empty(growable: true);
+  final List<GoodThingField> _allGoodThings = List.generate(1, (_) => GoodThingField(), growable: true);
   String rating = "0";
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,6 +29,7 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
         Date(),
         Rating(),
         AllGoodThings(),
+        AddGoodThingButton(),
         AllBadThings(),
         AddBadThingButton(),
         EndWorkday()
@@ -40,6 +42,13 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
       onPressed: () => setState(() {
             _allBadThings.add(BadThingEntry());
           }),
+      child: const Text("+"));
+
+  Widget AddGoodThingButton() => FloatingActionButton(
+      key: const Key("AddGoodThing"),
+      onPressed: () => setState(() {
+        _allGoodThings.add(GoodThingField());
+      }),
       child: const Text("+"));
 
   Widget Rating() {
@@ -62,10 +71,14 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   String FormattedDate() => DateFormat("MMMM dd, yyyy").format(widget.today());
 
   Widget AllGoodThings() => Expanded(
-          child: ListView(
-        key: const Key("AllGoodThings"),
-        children: [GoodThingField()],
-      ));
+    child: ListView.builder(
+      key: const Key("AllGoodThings"),
+      itemCount: _allGoodThings.length,
+      itemBuilder: (context, index) {
+        return _allGoodThings[index];
+      },
+    ),
+  );
 
   Widget AllBadThings() => Expanded(
         child: ListView.builder(
@@ -78,7 +91,14 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
       );
 
   Widget EndWorkday() => ElevatedButton(
-      key: const Key("EndWorkday"), onPressed: () => widget.repository.Save(Today()), child: const Text("End"));
+      key: const Key("EndWorkday"),
+      onPressed: () => widget.repository.Save(Today()),
+      child: const Text("End"));
 
-  Workday Today() => Workday(date: widget.today(), rating: int.parse(rating), goodThings: [GoodThing("something good")], badThings: [BadThing(issue: "something bad", proposedSolution: "a solution")]);
+  Workday Today() =>
+      Workday(date: widget.today(), rating: int.parse(rating), goodThings: [
+        GoodThing("something good")
+      ], badThings: [
+        BadThing(issue: "something bad", proposedSolution: "a solution")
+      ]);
 }
