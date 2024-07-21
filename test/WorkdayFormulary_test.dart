@@ -36,18 +36,13 @@ void main() {
 
   testWidgets('Upload filled formulary to repository',
       (WidgetTester tester) async {
+    
     var mock = MockRepository();
-
     await tester.pumpWidget(
         EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1), mock)));
 
-    var ratingDropdown = find.byKey(const ValueKey("RatingDropdown"));
-    await tester.tap(ratingDropdown);
-    await tester.pumpAndSettle();
-    var firstRating = find.text("I").last;
-    await tester.tap(firstRating);
-    await tester.pumpAndSettle();
-
+    await tester.SelectDropdownOption(dropdownKey: "RatingDropdown", option: "I");
+    
     await tester.enterText(find.byType(GoodThingField).first, "something good");
 
     await tester.tap(find.byKey(const Key("AddBadThing")));
@@ -76,4 +71,14 @@ T FirstWidget<T>() => find.byType(T).evaluate().single.widget as T;
 extension CustomFinders on WidgetTester {
   bool ExistsListWithKey(String key) =>
       widgetList<ListView>(find.byKey(ValueKey(key))).isNotEmpty;
+  
+  Future<void> SelectDropdownOption({required String dropdownKey, required String option})
+  async{
+    var ratingDropdown = find.byKey(ValueKey(dropdownKey));
+    await tap(ratingDropdown);
+    await pumpAndSettle();
+    var firstRating = find.text(option).last;
+    await tap(firstRating);
+    await pumpAndSettle();
+  }
 }
