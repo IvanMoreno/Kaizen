@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kaizen/WorkdayFormulary.dart';
 
-import 'package:kaizen/main.dart';
-
 // [] Rate day
 // [] Assign today's date
 // [] Introduce good thing
@@ -18,6 +16,6 @@ void main() {
         home: Scaffold(body: WorkdayFormulary(() => DateTime(2024, 7, 1)))));
 
     expect(find.text("No Rating"), findsOne);
-    expect(find.text("July 1 - 2024"), findsOne);
+    expect(find.text("July 01, 2024"), findsOne);
   });
 }
