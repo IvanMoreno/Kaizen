@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kaizen/BadThingField.dart';
 import 'package:kaizen/GoodThingField.dart';
 import 'package:kaizen/ProposedSolutionField.dart';
+import 'package:kaizen/Repository.dart';
 import 'package:kaizen/WorkdayFormulary.dart';
 
 // [] Rate day
@@ -18,7 +19,7 @@ void main() {
   testWidgets('All formulary fields are empty by default',
       (WidgetTester tester) async {
     await tester
-        .pumpWidget(EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1))));
+        .pumpWidget(EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1),MockRepository())));
 
     expect(find.text("No Rating"), findsOne);
     expect(find.text("July 01, 2024"), findsOne);
@@ -31,8 +32,10 @@ void main() {
   testWidgets('Upload filled formulary to repository',
       (WidgetTester tester) async {
     
+    var mockRepository = MockRepository();
+    
     await tester
-        .pumpWidget(EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1))));
+        .pumpWidget(EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1), mockRepository)));
 
     var ratingDropdown = find.byKey(const ValueKey("RatingDropdown"));
     await tester.tap(ratingDropdown);
@@ -47,7 +50,12 @@ void main() {
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(BadThingField).first, "something bad");
     await tester.enterText(find.byType(ProposedSolutionField).first, "a solution");
+
+    await tester.tap(find.byKey(const Key("EndWorkday")));
   });
+}
+
+class MockRepository implements WorkdaysRepository {
 }
 
 MaterialApp EmbedInApp(Widget widget) =>

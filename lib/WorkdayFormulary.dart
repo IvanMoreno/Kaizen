@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kaizen/BadThingEntry.dart';
-import 'package:kaizen/BadThingField.dart';
 import 'package:kaizen/GoodThingField.dart';
+import 'package:kaizen/Repository.dart';
 
 class WorkdayFormulary extends StatefulWidget {
   final DateTime Function() today;
 
-  const WorkdayFormulary(this.today, {super.key});
+  const WorkdayFormulary(this.today, WorkdaysRepository mockRepository, {super.key});
 
   @override
   State<WorkdayFormulary> createState() => _WorkdayFormularyState();
@@ -24,7 +24,8 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
         Rating(),
         AllGoodThings(),
         AllBadThings(),
-        AddBadThingButton()
+        AddBadThingButton(),
+        EndWorkday()
       ],
     );
   }
@@ -66,4 +67,6 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
           },
         ),
       );
+
+  Widget EndWorkday() => ElevatedButton(key: Key("EndWorkday"),onPressed: (){}, child: const Text("End"));
 }
