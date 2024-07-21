@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kaizen/BadThingField.dart';
 import 'package:kaizen/GoodThingField.dart';
 
 class WorkdayFormulary extends StatefulWidget {
@@ -12,6 +13,8 @@ class WorkdayFormulary extends StatefulWidget {
 }
 
 class _WorkdayFormularyState extends State<WorkdayFormulary> {
+  List<BadThingField> allBadThings = List.empty(growable: true);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,6 +23,9 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
         Rating(),
         AllGoodThings(),
         AllBadThings(),
+        FloatingActionButton(key: const Key("AddBadThing"),onPressed: () => setState(() {
+          allBadThings.add(BadThingField());
+        }), child: const Text("+"))
       ],
     );
   }
@@ -27,6 +33,7 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   Widget Rating() {
     return DropdownButton<String>(
         key: const Key("RatingDropdown"),
+        value: "0",
         items: const [
           DropdownMenuItem(value: "0", child: Text("No Rating")),
           DropdownMenuItem(value: "1", child: Text("I"))
@@ -45,7 +52,9 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
       ));
 
   Widget AllBadThings() => Expanded(
-          child: ListView(
-        key: const Key("AllBadThings"),
-      ));
+    child: ListView(
+            key: const Key("AllBadThings"),
+            children: allBadThings,
+          ),
+  );
 }
