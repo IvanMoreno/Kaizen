@@ -11,6 +11,8 @@ import 'package:kaizen/Repository.dart';
 import 'package:kaizen/Workday.dart';
 import 'package:kaizen/WorkdayFormulary.dart';
 
+import 'MockRepository.dart';
+
 // [] Rate day
 // [] Assign today's date
 // [] Introduce good thing
@@ -64,13 +66,6 @@ void main() {
           BadThing(issue: "something bad", proposedSolution: "a solution")
         ]));
   });
-}
-
-class MockRepository implements WorkdaysRepository {
-  var LastSubmission;
-
-  @override
-  void Save(Workday today) => LastSubmission = today;
 }
 
 MaterialApp EmbedInApp(Widget widget) =>
