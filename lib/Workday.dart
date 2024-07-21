@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 import 'package:kaizen/BadThing.dart';
 import 'package:kaizen/GoodThing.dart';
 
@@ -13,6 +14,10 @@ class Workday {
   @override
   bool operator ==(Object other) {
     return other is Workday && other.date == date && other.rating == rating && listEquals(other.goodThings, goodThings) && listEquals(other.badThings, badThings);
-    
+  }
+  
+  @override
+  String toString() {
+    return "${DateFormat("MMMM dd, yyyy").format(date)} - Rating: $rating - good things: $goodThings - bad things: $badThings";    
   }
 }

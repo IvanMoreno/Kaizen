@@ -7,4 +7,7 @@ class GoodThing{
   bool operator ==(Object other) {
     return other is GoodThing && other.cause == cause;
   }
+  
+  @override
+  String toString() => cause;
 }

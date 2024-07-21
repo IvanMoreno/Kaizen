@@ -9,9 +9,8 @@ extension WorkdayFormularyFilling on WidgetTester
   async {
     await tap(find.byKey(const Key("AddBadThing")));
     await pumpAndSettle();
-    await enterText(find.byType(BadThingField).first, issue);
+    await enterText(find.byType(BadThingField).last, issue);
     await enterText(
-        find.byType(ProposedSolutionField).first, proposedSolution);
-    await pumpAndSettle();
+        find.byType(ProposedSolutionField).last, proposedSolution);
   }
 }
