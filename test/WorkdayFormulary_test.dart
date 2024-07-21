@@ -16,8 +16,8 @@ import 'package:kaizen/WorkdayFormulary.dart';
 void main() {
   testWidgets('All formulary fields are empty by default',
       (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-        home: Scaffold(body: WorkdayFormulary(() => DateTime(2024, 7, 1)))));
+    
+    await tester.pumpWidget(EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1))));
 
     expect(find.text("No Rating"), findsOne);
     expect(find.text("July 01, 2024"), findsOne);
@@ -27,6 +27,9 @@ void main() {
     expect(find.byType(BadThingField), findsNothing);
   });
 }
+
+MaterialApp EmbedInApp(Widget widget) 
+=> MaterialApp(home: Scaffold(body: widget));
 
 T FirstWidget<T>() => find.byType(T).evaluate().single.widget as T;
 
