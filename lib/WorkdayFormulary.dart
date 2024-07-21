@@ -13,7 +13,7 @@ class WorkdayFormulary extends StatefulWidget {
 }
 
 class _WorkdayFormularyState extends State<WorkdayFormulary> {
-  List<BadThingField> allBadThings = List.empty(growable: true);
+  List<BadThingField> _allBadThings = List.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,17 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
         Rating(),
         AllGoodThings(),
         AllBadThings(),
-        FloatingActionButton(key: const Key("AddBadThing"),onPressed: () => setState(() {
-          allBadThings.add(BadThingField());
-        }), child: const Text("+"))
+        AddBadThingButton()
       ],
     );
   }
+
+  Widget AddBadThingButton() => FloatingActionButton(
+      key: const Key("AddBadThing"),
+      onPressed: () => setState(() {
+            _allBadThings.add(BadThingField());
+          }),
+      child: const Text("+"));
 
   Widget Rating() {
     return DropdownButton<String>(
@@ -52,9 +57,12 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
       ));
 
   Widget AllBadThings() => Expanded(
-    child: ListView(
-            key: const Key("AllBadThings"),
-            children: allBadThings,
-          ),
-  );
+        child: ListView.builder(
+          key: const Key("AllBadThings"),
+          itemCount: _allBadThings.length,
+          itemBuilder: (context, index){
+            return _allBadThings[index];
+          },
+        ),
+      );
 }

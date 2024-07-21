@@ -43,7 +43,8 @@ void main() {
     await tester.enterText(find.byType(GoodThingField).first, "something good");
     await tester.tap(find.byKey(const Key("AddBadThing")));
     await tester.pumpAndSettle();
-    
+
+    await tester.enterText(find.byType(BadThingField).first, "something bad");
   });
 }
 
