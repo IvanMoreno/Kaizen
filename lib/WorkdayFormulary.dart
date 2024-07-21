@@ -19,6 +19,7 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
         Date(),
         Rating(),
         AllGoodThings(),
+        AllBadThings(),
       ],
     );
   }
@@ -34,4 +35,6 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   String FormattedDate() => DateFormat("MMMM dd, yyyy").format(widget.today());
 
   Widget AllGoodThings() => Expanded(child: ListView(key: const Key("AllGoodThings"),children: [GoodThingField()],));
+
+  Widget AllBadThings() => Expanded(child: ListView(key: const Key("AllBadThings"),));
 }
