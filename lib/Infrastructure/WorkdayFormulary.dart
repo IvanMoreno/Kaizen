@@ -43,14 +43,14 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
       onPressed: () => setState(() {
             _allBadThings.add(BadThingEntry());
           }),
-      child: const Text("+"));
+      child: const Text("Bad thing +"));
 
   Widget AddGoodThingButton() => FloatingActionButton(
       key: const Key("AddGoodThing"),
       onPressed: () => setState(() {
             _allGoodThings.add(GoodThingField());
           }),
-      child: const Text("+"));
+      child: const Text("Good thing +"));
 
   Widget Rating() {
     return DropdownButton<String>(
