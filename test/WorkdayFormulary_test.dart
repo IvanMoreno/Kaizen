@@ -16,6 +16,6 @@ void main() {
     
     await tester.pumpWidget(const MaterialApp(home: Scaffold(body:WorkdayFormulary())));
 
-    expect(find.byKey(const Key("RatingDropdown")), isEmpty);
+    expect(find.text("No Rating"), findsOne);
   });
 }

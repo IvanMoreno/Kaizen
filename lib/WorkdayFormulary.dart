@@ -13,7 +13,7 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
         key: const Key("RatingDropdown"),
-        items: const [DropdownMenuItem(child: Text("I"))],
+        items: const [DropdownMenuItem(child: Text("No Rating"))],
         onChanged: (_) {});
   }
 }
