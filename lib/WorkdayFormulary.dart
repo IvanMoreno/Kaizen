@@ -19,7 +19,8 @@ class WorkdayFormulary extends StatefulWidget {
 
 class _WorkdayFormularyState extends State<WorkdayFormulary> {
   final List<BadThingEntry> _allBadThings = List.empty(growable: true);
-  final List<GoodThingField> _allGoodThings = List.generate(1, (_) => GoodThingField(), growable: true);
+  final List<GoodThingField> _allGoodThings =
+      List.generate(1, (_) => GoodThingField(), growable: true);
   String rating = "0";
 
   @override
@@ -47,8 +48,8 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   Widget AddGoodThingButton() => FloatingActionButton(
       key: const Key("AddGoodThing"),
       onPressed: () => setState(() {
-        _allGoodThings.add(GoodThingField());
-      }),
+            _allGoodThings.add(GoodThingField());
+          }),
       child: const Text("+"));
 
   Widget Rating() {
@@ -71,14 +72,14 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   String FormattedDate() => DateFormat("MMMM dd, yyyy").format(widget.today());
 
   Widget AllGoodThings() => Expanded(
-    child: ListView.builder(
-      key: const Key("AllGoodThings"),
-      itemCount: _allGoodThings.length,
-      itemBuilder: (context, index) {
-        return _allGoodThings[index];
-      },
-    ),
-  );
+        child: ListView.builder(
+          key: const Key("AllGoodThings"),
+          itemCount: _allGoodThings.length,
+          itemBuilder: (context, index) {
+            return _allGoodThings[index];
+          },
+        ),
+      );
 
   Widget AllBadThings() => Expanded(
         child: ListView.builder(
@@ -95,12 +96,20 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
       onPressed: () => widget.repository.Save(Today()),
       child: const Text("End"));
 
-  Workday Today() =>
-      Workday(date: widget.today(), rating: int.parse(rating), goodThings: GoodThings(), badThings: [
-        BadThing(issue: "something bad", proposedSolution: "a solution")
-      ]);
+  Workday Today() => Workday(
+      date: widget.today(),
+      rating: int.parse(rating),
+      goodThings: GoodThings(),
+      badThings: BadThings());
+
+  List<BadThing> BadThings() {
+    return _allBadThings
+        .map((badThing) => BadThing(
+            issue: badThing.Content, proposedSolution: badThing.Solution))
+        .toList();
+  }
 
   List<GoodThing> GoodThings() {
-   return _allGoodThings.map((cause) => GoodThing(cause.Content)).toList();
+    return _allGoodThings.map((cause) => GoodThing(cause.Content)).toList();
   }
 }

@@ -12,5 +12,6 @@ extension WorkdayFormularyFilling on WidgetTester
     await enterText(find.byType(BadThingField).first, issue);
     await enterText(
         find.byType(ProposedSolutionField).first, proposedSolution);
+    await pumpAndSettle();
   }
 }
