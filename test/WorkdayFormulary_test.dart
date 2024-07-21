@@ -7,8 +7,8 @@ import 'CustomFinders.dart';
 import 'MockRepository.dart';
 import 'WorkdayFormularyFilling.dart';
 
-// [] Display hints in fields
-// [] Display buttons intention
+// [] Save workday locally
+// [] Review yesterday workday
 
 void main() {
   testWidgets('All formulary fields are empty by default',
