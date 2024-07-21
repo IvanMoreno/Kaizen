@@ -22,16 +22,13 @@ void main() {
     expect(find.text("No Rating"), findsOne);
     expect(find.text("July 01, 2024"), findsOne);
     expect(tester.ExistsListWithKey("AllGoodThings"), isTrue);
-    expect(
-        ((find.byType(GoodThingField).evaluate().single).widget
-                as GoodThingField)
-            .Content,
-        isEmpty);
-
+    expect(FirstWidget<GoodThingField>().Content, isEmpty);
     expect(tester.ExistsListWithKey("AllBadThings"), isTrue);
     expect(find.byType(BadThingField), findsNothing);
   });
 }
+
+T FirstWidget<T>() => find.byType(T).evaluate().single.widget as T;
 
 extension CustomFinders on WidgetTester {
   bool ExistsListWithKey(String key) =>
