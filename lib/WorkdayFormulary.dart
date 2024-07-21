@@ -64,7 +64,9 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
           DropdownMenuItem(value: "4", child: Text("IV")),
           DropdownMenuItem(value: "5", child: Text("V")),
         ],
-        onChanged: (selection) => rating = selection!);
+        onChanged: (selection) => setState(() {
+          rating = selection!;
+        }));
   }
 
   Widget Date() => Text(FormattedDate());
