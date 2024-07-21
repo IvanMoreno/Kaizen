@@ -53,6 +53,27 @@ void main() {
           BadThing(issue: "something bad", proposedSolution: "a solution")
         ]));
   });
+
+  testWidgets('Upload several good and bad things to repository',
+          (WidgetTester tester) async {
+
+        var mock = MockRepository();
+        await tester.pumpWidget(
+            EmbedInApp(WorkdayFormulary(() => DateTime(2024, 8, 3), mock)));
+
+        await tester.SelectDropdownOption(dropdownKey: "RatingDropdown", option: "III");
+        await tester.enterText(find.byType(GoodThingField).first, "something good");
+        await tester.FillBadThing(issue: "something bad", proposedSolution: "a solution");
+        await tester.tap(find.byKey(const Key("EndWorkday")));
+
+        expect(
+            mock.LastSubmission,
+            Workday(date: DateTime(2024, 8, 3), rating: 3, goodThings: [
+              GoodThing("something good")
+            ], badThings: [
+              BadThing(issue: "something bad", proposedSolution: "a solution")
+            ]));
+      });
 }
 
 MaterialApp EmbedInApp(Widget widget) =>

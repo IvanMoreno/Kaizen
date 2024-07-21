@@ -18,8 +18,9 @@ class WorkdayFormulary extends StatefulWidget {
 }
 
 class _WorkdayFormularyState extends State<WorkdayFormulary> {
-  List<BadThingEntry> _allBadThings = List.empty(growable: true);
-
+  final List<BadThingEntry> _allBadThings = List.empty(growable: true);
+  String rating = "0";
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,12 +45,16 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   Widget Rating() {
     return DropdownButton<String>(
         key: const Key("RatingDropdown"),
-        value: "0",
+        value: rating,
         items: const [
           DropdownMenuItem(value: "0", child: Text("No Rating")),
-          DropdownMenuItem(value: "1", child: Text("I"))
+          DropdownMenuItem(value: "1", child: Text("I")),
+          DropdownMenuItem(value: "2", child: Text("II")),
+          DropdownMenuItem(value: "3", child: Text("III")),
+          DropdownMenuItem(value: "4", child: Text("IV")),
+          DropdownMenuItem(value: "5", child: Text("V")),
         ],
-        onChanged: (_) {});
+        onChanged: (selection) => rating = selection!);
   }
 
   Widget Date() => Text(FormattedDate());
@@ -75,5 +80,5 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   Widget EndWorkday() => ElevatedButton(
       key: const Key("EndWorkday"), onPressed: () => widget.repository.Save(Today()), child: const Text("End"));
 
-  Workday Today() => Workday(date: widget.today(), rating: 1, goodThings: [GoodThing("something good")], badThings: [BadThing(issue: "something bad", proposedSolution: "a solution")]);
+  Workday Today() => Workday(date: widget.today(), rating: int.parse(rating), goodThings: [GoodThing("something good")], badThings: [BadThing(issue: "something bad", proposedSolution: "a solution")]);
 }
