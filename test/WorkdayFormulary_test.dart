@@ -10,6 +10,7 @@ import 'package:kaizen/WorkdayFormulary.dart';
 
 import 'CustomFinders.dart';
 import 'MockRepository.dart';
+import 'WorkdayFormularyFilling.dart';
 
 // [] Rate day
 // [] Assign today's date
@@ -40,11 +41,8 @@ void main() {
         EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1), mock)));
 
     await tester.SelectDropdownOption(dropdownKey: "RatingDropdown", option: "I");
-    
     await tester.enterText(find.byType(GoodThingField).first, "something good");
-
     await tester.FillBadThing(issue: "something bad", proposedSolution: "a solution");
-
     await tester.tap(find.byKey(const Key("EndWorkday")));
 
     expect(
@@ -61,15 +59,3 @@ MaterialApp EmbedInApp(Widget widget) =>
     MaterialApp(home: Scaffold(body: widget));
 
 T FirstWidget<T>() => find.byType(T).evaluate().single.widget as T;
-
-extension WorkdayFormularyFilling on WidgetTester
-{
-  Future<void> FillBadThing({required String issue, required String proposedSolution})
-  async {
-    await tap(find.byKey(const Key("AddBadThing")));
-    await pumpAndSettle();
-    await enterText(find.byType(BadThingField).first, issue);
-    await enterText(
-        find.byType(ProposedSolutionField).first, proposedSolution);
-  }
-}
