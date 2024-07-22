@@ -1,28 +1,26 @@
 import 'package:kaizen/Application/KaizenApplication.dart';
+import 'package:kaizen/Domain/WorkdayReviewProgress.dart';
 
 class ReviewWorkday {
   final WorkdaysRepository repository;
   final WorkdayNavigation view;
-  int index = -1;
+  late WorkdayReviewProgress progress;
 
-  ReviewWorkday(this.repository, this.view);
+  ReviewWorkday(this.repository, this.view)
+  {
+    progress = WorkdayReviewProgress();
+  }
 
   Future<void> Previous() async {
-    if(index == -1) index = (await repository.Load()).length;
-    if (index <= 0) {
-      return;
-    }
-
-    view.Review((await repository.Load())[--index]);
+    view.Review(progress.Previous(await repository.Load()));
   }
 
   Future<void> Next() async {
-    if (index == -1 || (await repository.Load()).length <= index + 1) {
+    if (progress.DidFinished(await repository.Load())) {
       view.ExitReview();
-      index = -1;
       return;
     }
 
-    view.Review((await repository.Load())[--index]);
+    view.Review(progress.Next(await repository.Load()));
   }
 }
