@@ -55,6 +55,15 @@ main() {
 
     expect(mockView.DidExit, isTrue);
   });
+
+  test('Cannot go next before reviewing previous workday', () async {
+    var mockView = MockWorkdayNavigation();
+
+    await ReviewOf([DemoDay], mockView).Next();
+
+    expect(mockView.ShownWorkday, null);
+    expect(mockView.DidExit, isTrue);
+  });
 }
 
 ReviewWorkday ReviewOf(List<Workday> workdays, MockWorkdayNavigation mockView) {
