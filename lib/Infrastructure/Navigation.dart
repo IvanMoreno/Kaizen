@@ -8,10 +8,13 @@ class NavigationWidget extends StatefulWidget implements WorkdayView {
   final DateTime Function() today;
   final WorkdaysRepository repository;
   late ReviewWorkday reviewWorkday;
+  late WorkdayFormulary formulary;
+  
   Workday? beingReviewed;
 
   NavigationWidget(this.today, this.repository, {super.key}) {
     reviewWorkday = ReviewWorkday(repository, this);
+    formulary = WorkdayFormulary(today, repository);
   }
 
   @override
@@ -26,18 +29,34 @@ class _NavigationWidgetState extends State<NavigationWidget> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ElevatedButton(
-            key: const Key("ReviewPreviousDay"),
-            onPressed: () => setState(() {
-              widget.reviewWorkday.Previous();
-            }),
-            child: const Text("<")),
+        Previous(),
+        Next(),
         Content()
       ],
     );
   }
 
-  Widget Content() => widget.beingReviewed == null
-      ? WorkdayFormulary(widget.today, widget.repository)
+  ElevatedButton Previous() {
+    return ElevatedButton(
+          key: const Key("Previous"),
+          onPressed: () => setState(() {
+            widget.reviewWorkday.Previous();
+          }),
+          child: const Text("<"));
+  }
+
+  ElevatedButton Next() {
+    return ElevatedButton(
+        key: const Key("Next"),
+        onPressed: () => setState(() {
+          widget.beingReviewed = null;
+        }),
+        child: const Text(">"));
+  }
+  
+  Widget Content() {
+    return widget.beingReviewed == null
+      ? widget.formulary
       : WorkdayReview(widget.beingReviewed!);
+  }
 }

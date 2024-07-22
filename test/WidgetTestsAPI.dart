@@ -10,4 +10,4 @@ WorkdayFormulary Formulary({DateTime? when, MockRepository? repository})
 MaterialApp EmbedInApp(Widget widget) =>
     MaterialApp(home: Scaffold(body: widget));
 
-T FirstWidget<T>() => find.byType(T).evaluate().single.widget as T;
+T FirstWidget<T>() => find.byType(T).evaluate().first.widget as T;
