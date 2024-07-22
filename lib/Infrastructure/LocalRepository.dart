@@ -7,5 +7,9 @@ class LocalRepository implements WorkdaysRepository
   void Save(Workday today) {
     throw UnimplementedError();
   }
-  
+
+  @override
+  Future<List<Workday>> Load() {
+    throw UnimplementedError();
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:kaizen/Domain/Workday.dart';
 
-abstract class WorkdaysRepository
-{
+abstract class WorkdaysRepository {
   void Save(Workday today);
+  Future<List<Workday>> Load();
 }
