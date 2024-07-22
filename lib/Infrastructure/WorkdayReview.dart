@@ -26,7 +26,7 @@ class _WorkdayReviewState extends State<WorkdayReview> {
   Widget Date() => Text(FormattedDate());
   String FormattedDate() => DateFormat("MMMM dd, yyyy").format(widget.toBeDisplayed.date);
   Widget Rating() => Text(widget.toBeDisplayed.rating.ToRomanNumeral());
-  Widget AllGoodThings() => Text(widget.toBeDisplayed.goodThings.first.cause);
+  Widget AllGoodThings() => Column(children: widget.toBeDisplayed.goodThings.map((good) => Text(good.cause)).toList(),);
 
   Widget AllBadThings() {
     return Column(
