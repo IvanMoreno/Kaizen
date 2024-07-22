@@ -27,13 +27,14 @@ class _WorkdayReviewState extends State<WorkdayReview> {
   String FormattedDate() => DateFormat("MMMM dd, yyyy").format(widget.toBeDisplayed.date);
   Widget Rating() => Text(widget.toBeDisplayed.rating.ToRomanNumeral());
   Widget AllGoodThings() => Column(children: widget.toBeDisplayed.goodThings.map((good) => Text(good.cause)).toList(),);
+  Widget AllBadThings() => Column(children: widget.toBeDisplayed.badThings.map(DisplayBadThing).toList(),);
 
-  Widget AllBadThings() {
+  Widget DisplayBadThing(BadThing badThing) {
     return Column(
-      children: [
-        Text(widget.toBeDisplayed.badThings.first.issue),
-        Text(widget.toBeDisplayed.badThings.first.proposedSolution),
-      ],
-    );
+    children: [
+      Text(badThing.issue),
+      Text(badThing.proposedSolution),
+    ],
+  );
   }
 }

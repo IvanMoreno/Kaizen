@@ -22,8 +22,10 @@ void main() {
     for (var goodThing in DemoDay.goodThings) {
       expect(find.text(goodThing.cause), findsOne);
     }
-    
-    expect(find.text(DemoDay.badThings.first.issue), findsOne);
-    expect(find.text(DemoDay.badThings.first.proposedSolution), findsOne);
+
+    for (var badThing in DemoDay.badThings) {
+      expect(find.text(badThing.issue), findsOne);
+      expect(find.text(badThing.proposedSolution), findsOne);
+    }
   });
 }
