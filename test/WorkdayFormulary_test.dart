@@ -5,6 +5,7 @@ import 'package:kaizen/Infrastructure/KaizenInfrastructure.dart';
 
 import 'CustomFinders.dart';
 import 'MockRepository.dart';
+import 'ReviewWorkday_test.dart';
 import 'WorkdayFormularyFilling.dart';
 
 // [] Save workday locally
@@ -68,6 +69,20 @@ void main() {
               BadThing(issue: "another bad thing", proposedSolution: "other solution")
             ]));
       });
+  
+  testWidgets('Review previously filled workday', (WidgetTester tester) async {
+    await tester.pumpWidget(
+        EmbedInApp(WorkdayFormulary(() => DateTime(2024, 6, 3), MockRepository())));
+    
+    await tester.FillWith(DemoDay);
+    await tester.tap(find.byKey(const Key("ReviewPreviousDay")));
+
+    expect(find.text(DemoDay.rating.ToRomanNumeral()), findsOne);
+    expect(find.text("June 03, 2024"), findsOne);
+    expect(find.text(DemoDay.goodThings.first.cause), findsOne);
+    expect(find.text(DemoDay.badThings.first.issue), findsOne);
+    expect(find.text(DemoDay.badThings.first.proposedSolution), findsOne);
+  });
 }
 
 MaterialApp EmbedInApp(Widget widget) =>

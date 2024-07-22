@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kaizen/Domain/KaizenDomain.dart';
 import 'package:kaizen/Infrastructure/KaizenInfrastructure.dart';
+
+import 'CustomFinders.dart';
 
 extension WorkdayFormularyFilling on WidgetTester
 {
@@ -23,5 +26,37 @@ extension WorkdayFormularyFilling on WidgetTester
       await pumpAndSettle();
       await enterText(find.byType(GoodThingField).last, causes[i]);
     }
+  }
+  
+  Future<void> FillWith(Workday when)
+  async {
+    assert(when.badThings.length == 1);
+    assert(when.goodThings.length == 1);
+      
+    await SelectDropdownOption(dropdownKey: "RatingDropdown", option: when.rating.ToRomanNumeral());
+    await FillSeveralGoodThings([when.goodThings.single.cause]);
+    await FillBadThing(issue: when.badThings.first.issue, proposedSolution: when.badThings.first.proposedSolution);
+    await tap(find.byKey(const Key("EndWorkday")));
+  }
+}
+
+extension afdsa on int{
+  String ToRomanNumeral()
+  {
+    switch(this)
+    {
+      case 1:
+        return "I";
+      case 2:
+        return "II";
+      case 3:
+        return "III";
+      case 4:
+        return "IV";
+      case 5:
+        return "V";
+    }
+    
+    throw UnimplementedError();
   }
 }
