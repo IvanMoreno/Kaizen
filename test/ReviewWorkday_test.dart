@@ -1,7 +1,3 @@
-// [x] Display previous workday
-// [] Display next workday
-// [] If there are no workday next, fill formulary
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kaizen/Application/KaizenApplication.dart';
 import 'package:kaizen/Domain/KaizenDomain.dart';

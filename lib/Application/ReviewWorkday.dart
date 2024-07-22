@@ -15,11 +15,11 @@ class ReviewWorkday {
   }
 
   Future<void> Next() async {
-    if(index == 0) {
+    if(index <= 0) {
       view.ExitReview();
       return;
     }
-      
+    
     view.Review((await repository.Load())[--index]);
   }
 }

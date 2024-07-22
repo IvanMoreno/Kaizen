@@ -22,6 +22,9 @@ class NavigationWidget extends StatefulWidget implements WorkdayNavigation {
 
   @override
   void Review(Workday workday) => beingReviewed = workday;
+
+  @override
+  void ExitReview() => beingReviewed = null;
 }
 
 class _NavigationWidgetState extends State<NavigationWidget> {
@@ -49,7 +52,7 @@ class _NavigationWidgetState extends State<NavigationWidget> {
     return ElevatedButton(
         key: const Key("Next"),
         onPressed: () => setState(() {
-          widget.beingReviewed = null;
+          widget.reviewWorkday.Next();
         }),
         child: const Text(">"));
   }
