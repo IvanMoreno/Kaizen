@@ -1,4 +1,4 @@
-import 'package:kaizen/Infrastructure/Repository.dart';
+import 'package:kaizen/Application/WorkdayRepository.dart';
 import 'package:kaizen/Domain/Workday.dart';
 
 class LocalRepository implements WorkdaysRepository

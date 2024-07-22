@@ -4,7 +4,7 @@ import 'package:kaizen/Domain/BadThing.dart';
 import 'package:kaizen/Infrastructure/BadThingEntry.dart';
 import 'package:kaizen/Domain/GoodThing.dart';
 import 'package:kaizen/Infrastructure/GoodThingField.dart';
-import 'package:kaizen/Infrastructure/Repository.dart';
+import 'package:kaizen/Application/WorkdayRepository.dart';
 import 'package:kaizen/Domain/Workday.dart';
 
 class WorkdayFormulary extends StatefulWidget {

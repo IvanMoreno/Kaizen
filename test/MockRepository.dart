@@ -1,5 +1,5 @@
 import 'package:kaizen/Domain/KaizenDomain.dart';
-import 'package:kaizen/Infrastructure/Repository.dart';
+import 'package:kaizen/Application/WorkdayRepository.dart';
 import 'package:kaizen/Domain/Workday.dart';
 
 class MockRepository implements WorkdaysRepository {
