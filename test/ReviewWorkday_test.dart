@@ -56,6 +56,15 @@ main() {
     expect(mockView.DidExit, isTrue);
   });
 
+  test('Start by last submitted workday', () async {
+    var mockView = MockWorkdayNavigation();
+
+    var sut = ReviewOf([DemoDay, DemoDay, AnotherDemoDay], mockView);
+    await sut.Previous();
+
+    expect(mockView.ShownWorkday, AnotherDemoDay);
+  });
+
   test('Cannot go next before reviewing previous workday', () async {
     var mockView = MockWorkdayNavigation();
 
