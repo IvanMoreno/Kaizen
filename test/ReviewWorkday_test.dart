@@ -12,12 +12,24 @@ import 'WorkdayFactory.dart';
 main() {
   test('Display previous workday', () async {
     var mock = MockRepository();
-    mock.LastSubmission = DemoDay;
+    mock.History = [DemoDay];
     var mockView = MockWorkdayView();
 
     await ReviewWorkday(mock, mockView).Previous();
 
     expect(mockView.ShownWorkday, DemoDay);
+  });
+
+  test('Display two days ago', () async {
+    var mock = MockRepository();
+    mock.History = [DemoDay, AnotherDemoDay, DemoDay];
+    var mockView = MockWorkdayView();
+
+    var sut = ReviewWorkday(mock, mockView);
+    await sut.Previous();
+    await sut.Previous();
+
+    expect(mockView.ShownWorkday, AnotherDemoDay);
   });
 }
 
