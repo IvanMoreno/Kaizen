@@ -15,7 +15,7 @@ void main() {
   testWidgets('All formulary fields are empty by default',
       (WidgetTester tester) async {
     await tester.pumpWidget(EmbedInApp(
-        WorkdayFormulary(() => DateTime(2024, 7, 1), MockRepository())));
+        Formulary(when:DateTime(2024, 7, 1))));
 
     expect(find.text("No Rating"), findsOne);
     expect(find.text("July 01, 2024"), findsOne);
@@ -30,7 +30,7 @@ void main() {
     
     var mock = MockRepository();
     await tester.pumpWidget(
-        EmbedInApp(WorkdayFormulary(() => DateTime(2024, 7, 1), mock)));
+        EmbedInApp(Formulary(when:DateTime(2024, 7, 1), repository: mock)));
 
     await tester.SelectDropdownOption(dropdownKey: "RatingDropdown", option: "I");
     await tester.enterText(find.byType(GoodThingField).first, "something good");
@@ -51,7 +51,7 @@ void main() {
 
         var mock = MockRepository();
         await tester.pumpWidget(
-            EmbedInApp(WorkdayFormulary(() => DateTime(2024, 8, 3), mock)));
+            EmbedInApp(Formulary(when: DateTime(2024, 8, 3), repository: mock)));
 
         await tester.SelectDropdownOption(dropdownKey: "RatingDropdown", option: "III");
         await tester.FillSeveralGoodThings(["a good thing", "another good thing"]);
@@ -72,7 +72,7 @@ void main() {
   
   testWidgets('Review previously filled workday', (WidgetTester tester) async {
     await tester.pumpWidget(
-        EmbedInApp(WorkdayFormulary(() => DateTime(2024, 6, 3), MockRepository())));
+        EmbedInApp(Formulary(when: DateTime(2024, 6, 3))));
     
     await tester.FillWith(DemoDay);
     await tester.tap(find.byKey(const Key("ReviewPreviousDay")));
@@ -84,6 +84,9 @@ void main() {
     expect(find.text(DemoDay.badThings.first.proposedSolution), findsOne);
   });
 }
+
+WorkdayFormulary Formulary({DateTime? when, MockRepository? repository}) 
+=> WorkdayFormulary(() => when ?? DateTime(2024, 6, 3), repository ?? MockRepository());
 
 MaterialApp EmbedInApp(Widget widget) =>
     MaterialApp(home: Scaffold(body: widget));
