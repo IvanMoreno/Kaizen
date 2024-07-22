@@ -38,17 +38,26 @@ main() {
 
     expect(mockView.ShownWorkday, DemoDay);
   });
-  
-  test('Review next workday', ()
-  async {
+
+  test('Review next workday', () async {
     var mockView = MockWorkdayNavigation();
 
     var sut = ReviewOf([DemoDay, AnotherDemoDay, DemoDay], mockView);
     await sut.Previous();
     await sut.Previous();
     await sut.Next();
-    
+
     expect(mockView.ShownWorkday, DemoDay);
+  });
+
+  test('Exit review', () async {
+    var mockView = MockWorkdayNavigation();
+
+    var sut = ReviewOf([DemoDay, AnotherDemoDay, DemoDay], mockView);
+    await sut.Previous();
+    await sut.Next();
+
+    expect(mockView.DidExit, isTrue);
   });
 }
 
