@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kaizen/Application/KaizenApplication.dart';
 import 'package:kaizen/Domain/Workday.dart';
 import 'package:kaizen/Infrastructure/KaizenInfrastructure.dart';
+import 'package:kaizen/Infrastructure/WorkdayReview.dart';
 
 class NavigationWidget extends StatefulWidget implements WorkdayView {
   final DateTime Function() today;
@@ -38,5 +39,5 @@ class _NavigationWidgetState extends State<NavigationWidget> {
 
   Widget Content() => widget.beingReviewed == null
       ? WorkdayFormulary(widget.today, widget.repository)
-      : Center();
+      : WorkdayReview(widget.beingReviewed!);
 }
