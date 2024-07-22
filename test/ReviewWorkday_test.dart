@@ -12,21 +12,17 @@ import 'WorkdayFactory.dart';
 
 main() {
   test('Display previous workday', () async {
-    var mock = MockRepository();
-    mock.History = [DemoDay];
     var mockView = MockWorkdayNavigation();
 
-    await ReviewWorkday(mock, mockView).Previous();
+    await ReviewOf([DemoDay], mockView).Previous();
 
     expect(mockView.ShownWorkday, DemoDay);
   });
 
   test('Display two days ago', () async {
-    var mock = MockRepository();
-    mock.History = [DemoDay, AnotherDemoDay, DemoDay];
     var mockView = MockWorkdayNavigation();
 
-    var sut = ReviewWorkday(mock, mockView);
+    var sut = ReviewOf([DemoDay, AnotherDemoDay, DemoDay], mockView);
     await sut.Previous();
     await sut.Previous();
 
@@ -34,14 +30,18 @@ main() {
   });
 
   test('Avoid reviewing non worked day', () async {
-    var mock = MockRepository();
-    mock.History = [DemoDay];
     var mockView = MockWorkdayNavigation();
 
-    var sut = ReviewWorkday(mock, mockView);
+    var sut = ReviewOf([DemoDay], mockView);
     await sut.Previous();
     await sut.Previous();
 
     expect(mockView.ShownWorkday, DemoDay);
   });
+}
+
+ReviewWorkday ReviewOf(List<Workday> workdays, MockWorkdayNavigation mockView) {
+  var mock = MockRepository();
+  mock.History = workdays;
+  return ReviewWorkday(mock, mockView);
 }
