@@ -5,37 +5,30 @@ import 'package:kaizen/Infrastructure/KaizenInfrastructure.dart';
 
 import 'CustomFinders.dart';
 
-extension WorkdayFormularyFilling on WidgetTester
-{
-  Future<void> FillBadThing({required String issue, required String proposedSolution})
-  async {
+extension WorkdayFormularyFilling on WidgetTester {
+  Future<void> FillBadThing({required String issue, required String proposedSolution}) async {
     await tap(find.byKey(const Key("AddBadThing")));
     await pumpAndSettle();
     await enterText(find.byType(BadThingField).last, issue);
-    await enterText(
-        find.byType(ProposedSolutionField).last, proposedSolution);
+    await enterText(find.byType(ProposedSolutionField).last, proposedSolution);
   }
-  
-  Future<void> FillSeveralGoodThings(List<String> causes)
-  async {
+
+  Future<void> FillSeveralGoodThings(List<String> causes) async {
     await enterText(find.byType(GoodThingField).first, causes.first);
-    
-    for(int i = 1; i < causes.length ;i++) 
-    {
+
+    for (int i = 1; i < causes.length; i++) {
       await tap(find.byKey(const Key("AddGoodThing")));
       await pumpAndSettle();
       await enterText(find.byType(GoodThingField).last, causes[i]);
     }
   }
-  
-  Future<void> FillWith(Workday when)
-  async {
-    assert(when.badThings.length == 1);
-    assert(when.goodThings.length == 1);
-      
+
+  Future<void> FillWith(Workday when) async {
     await SelectDropdownOption(dropdownKey: "RatingDropdown", option: when.rating.ToRomanNumeral());
-    await FillSeveralGoodThings([when.goodThings.single.cause]);
-    await FillBadThing(issue: when.badThings.first.issue, proposedSolution: when.badThings.first.proposedSolution);
+    await FillSeveralGoodThings(when.goodThings.map((goodThing) => goodThing.cause).toList());
+    for (var badThing in when.badThings) {
+      await FillBadThing(issue: badThing.issue, proposedSolution: badThing.proposedSolution);
+    }
     await tap(find.byKey(const Key("EndWorkday")));
   }
 }
