@@ -31,6 +31,18 @@ main() {
 
     expect(mockView.ShownWorkday, AnotherDemoDay);
   });
+
+  test('Avoid reviewing non worked day', () async {
+    var mock = MockRepository();
+    mock.History = [DemoDay];
+    var mockView = MockWorkdayView();
+
+    var sut = ReviewWorkday(mock, mockView);
+    await sut.Previous();
+    await sut.Previous();
+
+    expect(mockView.ShownWorkday, DemoDay);
+  });
 }
 
 class MockWorkdayView implements WorkdayView {

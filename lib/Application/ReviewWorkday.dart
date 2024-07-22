@@ -8,6 +8,9 @@ class ReviewWorkday {
   ReviewWorkday(this.repository, this.view);
 
   Future<void> Previous() async {
+    if((await repository.Load()).length <= index + 1)
+      return;
+      
     view.Review((await repository.Load())[++index]);
   }
 }
