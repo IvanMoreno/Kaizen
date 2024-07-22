@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kaizen/Domain/KaizenDomain.dart';
 import 'package:kaizen/Infrastructure/KaizenInfrastructure.dart';
+import 'package:kaizen/Infrastructure/Navigation.dart';
 
 import 'CustomFinders.dart';
 import 'MockRepository.dart';
@@ -72,7 +73,7 @@ void main() {
   
   testWidgets('Review previously filled workday', (WidgetTester tester) async {
     await tester.pumpWidget(
-        EmbedInApp(Formulary(when: DateTime(2024, 6, 3))));
+        EmbedInApp(NavigationWidget(() => DateTime(2024, 6, 3), MockRepository())));
     
     await tester.FillWith(DemoDay);
     await tester.tap(find.byKey(const Key("ReviewPreviousDay")));
