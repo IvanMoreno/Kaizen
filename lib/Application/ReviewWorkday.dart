@@ -13,4 +13,8 @@ class ReviewWorkday {
       
     view.Review((await repository.Load())[++index]);
   }
+
+  Future<void> Next() async {
+    view.Review((await repository.Load())[--index]);
+  }
 }
