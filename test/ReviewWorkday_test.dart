@@ -44,10 +44,3 @@ main() {
     expect(mockView.ShownWorkday, DemoDay);
   });
 }
-
-class MockWorkdayView implements WorkdayView {
-  Workday? ShownWorkday;
-
-  @override
-  void Review(Workday workday) => ShownWorkday = workday;
-}
