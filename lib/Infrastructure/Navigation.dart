@@ -4,7 +4,7 @@ import 'package:kaizen/Domain/Workday.dart';
 import 'package:kaizen/Infrastructure/KaizenInfrastructure.dart';
 import 'package:kaizen/Infrastructure/WorkdayReview.dart';
 
-class NavigationWidget extends StatefulWidget implements WorkdayView {
+class NavigationWidget extends StatefulWidget implements WorkdayNavigation {
   final DateTime Function() today;
   final WorkdaysRepository repository;
   late ReviewWorkday reviewWorkday;

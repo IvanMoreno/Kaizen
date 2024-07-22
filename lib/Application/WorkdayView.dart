@@ -1,6 +1,6 @@
 import 'package:kaizen/Domain/KaizenDomain.dart';
 
-abstract class WorkdayView
+abstract class WorkdayNavigation
 {
   void Review(Workday workday);
 }

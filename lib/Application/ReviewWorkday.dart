@@ -2,7 +2,7 @@ import 'package:kaizen/Application/KaizenApplication.dart';
 
 class ReviewWorkday {
   final WorkdaysRepository repository;
-  final WorkdayView view;
+  final WorkdayNavigation view;
   int index = -1;
   
   ReviewWorkday(this.repository, this.view);

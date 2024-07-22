@@ -7,13 +7,14 @@ import 'package:kaizen/Application/KaizenApplication.dart';
 import 'package:kaizen/Domain/KaizenDomain.dart';
 
 import 'MockRepository.dart';
+import 'MockWorkdayNavigation.dart';
 import 'WorkdayFactory.dart';
 
 main() {
   test('Display previous workday', () async {
     var mock = MockRepository();
     mock.History = [DemoDay];
-    var mockView = MockWorkdayView();
+    var mockView = MockWorkdayNavigation();
 
     await ReviewWorkday(mock, mockView).Previous();
 
@@ -23,7 +24,7 @@ main() {
   test('Display two days ago', () async {
     var mock = MockRepository();
     mock.History = [DemoDay, AnotherDemoDay, DemoDay];
-    var mockView = MockWorkdayView();
+    var mockView = MockWorkdayNavigation();
 
     var sut = ReviewWorkday(mock, mockView);
     await sut.Previous();
@@ -35,7 +36,7 @@ main() {
   test('Avoid reviewing non worked day', () async {
     var mock = MockRepository();
     mock.History = [DemoDay];
-    var mockView = MockWorkdayView();
+    var mockView = MockWorkdayNavigation();
 
     var sut = ReviewWorkday(mock, mockView);
     await sut.Previous();
