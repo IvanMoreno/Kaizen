@@ -8,16 +8,13 @@ import 'MockRepository.dart';
 import 'WidgetTestsAPI.dart';
 import 'WorkdayFormularyFilling.dart';
 
-// [] Save workday locally
-// [x] Review yesterday workday
-
 void main() {
   testWidgets('All formulary fields are empty by default',
       (WidgetTester tester) async {
     await tester.pumpWidget(EmbedInApp(
         Formulary(when:DateTime(2024, 7, 1))));
 
-    expect(find.text("No Rating"), findsOne);
+    expect(find.text("III"), findsOne);
     expect(find.text("July 01, 2024"), findsOne);
     expect(tester.ExistsListWithKey("AllGoodThings"), isTrue);
     expect(FirstWidget<GoodThingField>().Content, isEmpty);

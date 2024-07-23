@@ -21,7 +21,7 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   final List<BadThingEntry> _allBadThings = List.empty(growable: true);
   final List<GoodThingField> _allGoodThings =
       List.generate(1, (_) => GoodThingField(), growable: true);
-  String rating = "0";
+  String rating = "3";
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,6 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
         key: const Key("RatingDropdown"),
         value: rating,
         items: const [
-          DropdownMenuItem(value: "0", child: Text("No Rating")),
           DropdownMenuItem(value: "1", child: Text("I")),
           DropdownMenuItem(value: "2", child: Text("II")),
           DropdownMenuItem(value: "3", child: Text("III")),
