@@ -17,7 +17,7 @@ class WorkdayFormulary extends StatefulWidget {
   State<WorkdayFormulary> createState() => _WorkdayFormularyState();
 }
 
-class _WorkdayFormularyState extends State<WorkdayFormulary> {
+class _WorkdayFormularyState extends State<WorkdayFormulary>{
   final List<BadThingEntry> _allBadThings = List.empty(growable: true);
   final List<GoodThingField> _allGoodThings =
       List.generate(1, (_) => GoodThingField(), growable: true);
