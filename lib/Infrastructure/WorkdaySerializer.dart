@@ -1,6 +1,7 @@
 import 'package:kaizen/Domain/KaizenDomain.dart';
 
 class WorkdaySerializer {
+  
   static Map<String, dynamic> ToJson(Workday day) => {
     'day': day.date.day,
     'month': day.date.month,
@@ -21,4 +22,12 @@ class WorkdaySerializer {
 
   static List<BadThing> BadThings(Map<String, dynamic> json)
   => (json['badThings'] as List<(String,String)>).map((x) => BadThing(issue: x.$1, proposedSolution: x.$2)).toList();
+
+  static List<Workday> FromJsonAll(Map<String, dynamic> json) 
+  => (json['workdays'] as List<Map<String, dynamic>>).map(FromJson).toList();
+  
+  static Map<String, dynamic> ToJsonAll(List<Workday> list) =>
+  {
+    'workdays': list.map(ToJson).toList(),
+  };
 }
