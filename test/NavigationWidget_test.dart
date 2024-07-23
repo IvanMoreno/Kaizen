@@ -17,8 +17,7 @@ void main() {
     await tester.tap(find.byKey(const Key("Previous")));
     await tester.pumpAndSettle();
 
-    expect(find.text(DemoDay.rating.ToRomanNumeral()), findsOne);
-    expect(find.text("June 03, 2024"), findsOne);
+    expect(find.text("June 03, 2024 - I"), findsOne);
 
     for (var goodThing in DemoDay.goodThings) {
       expect(find.text(goodThing.cause), findsOne);
