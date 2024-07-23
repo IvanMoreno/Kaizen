@@ -7,7 +7,7 @@ class MockRepository implements WorkdaysRepository {
   List<Workday> History = List.empty(growable: true);
 
   @override
-  void Save(Workday today) {
+  Future<void> Save(Workday today) async {
     LastSubmission = today;
     History.add(today);
   }

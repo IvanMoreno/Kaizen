@@ -8,7 +8,7 @@ class WorkdaySerializer {
     'year': day.date.year,
     'rating': day.rating,
     'goodThings': day.goodThings.map((x) => x.cause).toList(),
-    'badThings': day.badThings.map((x) => (x.issue, x.proposedSolution)).toList()
+    'badThings': day.badThings.map((x) => "${x.issue}@${x.proposedSolution}").toList()
   };
 
   static Workday FromJson(Map<String, dynamic> json) {
@@ -21,7 +21,7 @@ class WorkdaySerializer {
   => (json['goodThings'] as List<String>).map((x) => GoodThing(x)).toList();
 
   static List<BadThing> BadThings(Map<String, dynamic> json)
-  => (json['badThings'] as List<(String,String)>).map((x) => BadThing(issue: x.$1, proposedSolution: x.$2)).toList();
+  => (json['badThings'] as List<String>).map((x) => BadThing(issue: x.split('@').first, proposedSolution: x.split('@').last)).toList();
 
   static List<Workday> FromJsonAll(Map<String, dynamic> json) 
   => (json['workdays'] as List<Map<String, dynamic>>).map(FromJson).toList();

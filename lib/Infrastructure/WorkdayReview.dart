@@ -16,6 +16,7 @@ class _WorkdayReviewState extends State<WorkdayReview> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
+      const SizedBox(height: 60,),
       Date(),
       Rating(),
       AllGoodThings(),
@@ -33,7 +34,7 @@ class _WorkdayReviewState extends State<WorkdayReview> {
     return Column(
     children: [
       Text(badThing.issue),
-      Text(badThing.proposedSolution),
+      Text(badThing.proposedSolution,style: const TextStyle(fontWeight: FontWeight.bold)),
     ],
   );
   }

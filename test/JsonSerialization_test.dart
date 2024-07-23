@@ -10,5 +10,6 @@ main() {
   
   test('Encode and decode a list of workdays', () {
     expect(WorkdaySerializer.FromJsonAll(WorkdaySerializer.ToJsonAll([DemoDay,AnotherDemoDay])), [DemoDay,AnotherDemoDay]);
+    expect(WorkdaySerializer.FromJsonAll(WorkdaySerializer.ToJsonAll([DemoDay])), [DemoDay]);
   });
 }
