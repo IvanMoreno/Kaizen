@@ -15,7 +15,7 @@ class WorkdayReview extends StatefulWidget
 class _WorkdayReviewState extends State<WorkdayReview> {
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
+    return Column(children: [
       const SizedBox(height: 60,),
       Center(child: DateAndRating()),
       const SizedBox(height: 20,),
