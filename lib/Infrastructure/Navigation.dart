@@ -30,17 +30,20 @@ class NavigationWidget extends StatefulWidget implements WorkdayNavigation {
 class _NavigationWidgetState extends State<NavigationWidget> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Previous(),
-            Next(),
-          ],
-        ),
-        Content()
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Stack(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Previous(),
+              Next(),
+            ],
+          ),
+          Content()
+        ],
+      ),
     );
   }
 
