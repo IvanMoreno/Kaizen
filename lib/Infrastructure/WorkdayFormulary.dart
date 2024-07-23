@@ -27,6 +27,7 @@ class _WorkdayFormularyState extends State<WorkdayFormulary> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 60,),
         Date(),
         Rating(),
         AllGoodThings(),

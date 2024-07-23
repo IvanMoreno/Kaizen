@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:kaizen/Application/WorkdayRepository.dart';
 import 'package:kaizen/Domain/Workday.dart';
 import 'package:kaizen/Infrastructure/WorkdaySerializer.dart';

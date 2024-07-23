@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kaizen/Infrastructure/LocalRepository.dart';
+import 'package:kaizen/Infrastructure/Navigation.dart';
 import 'package:kaizen/Infrastructure/WorkdayFormulary.dart';
 
 void main() {
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Scaffold(
-            body: WorkdayFormulary(() => DateTime.now(), LocalRepository())));
+            body: NavigationWidget(() => DateTime.now(), LocalRepository())));
   }
 }
 
