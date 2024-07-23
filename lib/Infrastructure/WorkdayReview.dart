@@ -15,11 +15,12 @@ class WorkdayReview extends StatefulWidget
 class _WorkdayReviewState extends State<WorkdayReview> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return ListView(children: [
       const SizedBox(height: 60,),
       Date(),
       Rating(),
       AllGoodThings(),
+      const Text("--- BAD THINGS ---"),
       AllBadThings()
     ],);
   }
