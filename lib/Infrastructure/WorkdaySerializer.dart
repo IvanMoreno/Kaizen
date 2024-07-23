@@ -18,13 +18,13 @@ class WorkdaySerializer {
   }
 
   static List<GoodThing> GoodThings(Map<String, dynamic> json)
-  => (json['goodThings'] as List<String>).map((x) => GoodThing(x)).toList();
+  => (json['goodThings'] as List<dynamic>).map((x) => GoodThing(x)).toList();
 
   static List<BadThing> BadThings(Map<String, dynamic> json)
-  => (json['badThings'] as List<String>).map((x) => BadThing(issue: x.split('@').first, proposedSolution: x.split('@').last)).toList();
+  => (json['badThings'] as List<dynamic>).map((x) => BadThing(issue: x.split('@').first, proposedSolution: x.split('@').last)).toList();
 
   static List<Workday> FromJsonAll(Map<String, dynamic> json) 
-  => (json['workdays'] as List<Map<String, dynamic>>).map(FromJson).toList();
+  => (json['workdays'] as List<dynamic>).map((x) => x as Map<String, dynamic>).map(FromJson).toList();
   
   static Map<String, dynamic> ToJsonAll(List<Workday> list) =>
   {
