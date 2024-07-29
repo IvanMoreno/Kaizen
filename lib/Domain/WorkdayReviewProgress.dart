@@ -19,5 +19,5 @@ class WorkdayReviewProgress
     return fromWorkdays[++index];
   }
   
-  bool DidFinished(List<Workday> fromWorkdays) => index == fromWorkdays.length -1 || index == -1;
+  bool DidFinished(List<Workday> fromWorkdays) => index == fromWorkdays.length || index == -1;
 }
