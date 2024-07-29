@@ -24,7 +24,7 @@ main()
     var sut = CreateSut();
 
     sut.Previous([DemoDay]);
-    sut.NextNew([DemoDay]);
+    sut.Next([DemoDay]);
 
     expect(sut.DidFinish([DemoDay]), isTrue);
   });
@@ -42,9 +42,9 @@ main()
   {
     var sut = CreateSut();
 
-    sut.PreviousNew([AnotherDemoDay, DemoDay, DemoDay]);
-    sut.PreviousNew([AnotherDemoDay, DemoDay, DemoDay]);
-    sut.PreviousNew([AnotherDemoDay, DemoDay, DemoDay]);
+    sut.Previous([AnotherDemoDay, DemoDay, DemoDay]);
+    sut.Previous([AnotherDemoDay, DemoDay, DemoDay]);
+    sut.Previous([AnotherDemoDay, DemoDay, DemoDay]);
 
     expect(sut.Current([AnotherDemoDay, DemoDay, DemoDay]), AnotherDemoDay);
   });
@@ -53,9 +53,9 @@ main()
   {
     var sut = CreateSut();
 
-    sut.PreviousNew([DemoDay]);
-    sut.NextNew([DemoDay]);
-    sut.PreviousNew([DemoDay, AnotherDemoDay]);
+    sut.Previous([DemoDay]);
+    sut.Next([DemoDay]);
+    sut.Previous([DemoDay, AnotherDemoDay]);
     
     expect(sut.Current([DemoDay, AnotherDemoDay]), AnotherDemoDay);
   });
