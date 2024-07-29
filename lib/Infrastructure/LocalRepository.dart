@@ -11,18 +11,19 @@ class LocalRepository implements WorkdaysRepository {
   @override
   Future<void> Save(Workday today) async {
     preferences ??= await SharedPreferences.getInstance();
-
+    if(allWorkdays.isEmpty) {
+      allWorkdays = await Load();
+    }
+    
     allWorkdays.add(today);
-    var toJsonAll = WorkdaySerializer.ToJsonAll(allWorkdays);
-    preferences!.setString('history', jsonEncode(toJsonAll));
+    preferences!.setString('history', jsonEncode(WorkdaySerializer.ToJsonAll(allWorkdays)));
   }
 
   @override
   Future<List<Workday>> Load() async {
     preferences ??= await SharedPreferences.getInstance();
     if(allWorkdays.isEmpty && preferences!.containsKey('history')) {
-      var source = preferences!.getString('history')!;
-      allWorkdays = WorkdaySerializer.FromJsonAll(jsonDecode(source));
+      return WorkdaySerializer.FromJsonAll(jsonDecode(preferences!.getString('history')!));
     }
     
     return allWorkdays;
