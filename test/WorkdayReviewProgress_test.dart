@@ -18,4 +18,14 @@ main()
     
     expect(sut.DidFinished([DemoDay]), isFalse);
   });
+  
+  test('Finish review process', ()
+  {
+    var sut = WorkdayReviewProgress();
+
+    sut.Previous([DemoDay]);
+    sut.NextNew([DemoDay]);
+
+    expect(sut.DidFinished([DemoDay]), isTrue);
+  });
 }
