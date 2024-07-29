@@ -14,6 +14,7 @@ class WorkdayReviewProgress
   
   void PreviousNew(List<Workday> fromWorkdays)
   {
+    if(index == 0) return;
     if(index == -1) index = fromWorkdays.length;
     
     index--;    

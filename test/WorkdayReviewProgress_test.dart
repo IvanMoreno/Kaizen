@@ -6,13 +6,13 @@ main()
 {
   test('Workday review is finished by default', ()
   {
-    expect(WorkdayReviewProgress().DidFinished([]), isTrue);
-    expect(WorkdayReviewProgress().DidFinished([DemoDay]), isTrue);
+    expect(CreateSut().DidFinished([]), isTrue);
+    expect(CreateSut().DidFinished([DemoDay]), isTrue);
   });
   
   test('Start process after reviewing previous workday', ()
   {
-    var sut = WorkdayReviewProgress();
+    var sut = CreateSut();
     
     sut.Previous([DemoDay]);
     
@@ -21,7 +21,7 @@ main()
   
   test('Finish review process', ()
   {
-    var sut = WorkdayReviewProgress();
+    var sut = CreateSut();
 
     sut.Previous([DemoDay]);
     sut.NextNew([DemoDay]);
@@ -31,7 +31,7 @@ main()
   
   test('Review a workday', ()
   {
-    var sut = WorkdayReviewProgress();
+    var sut = CreateSut();
 
     sut.Previous([DemoDay]);
 
@@ -40,7 +40,7 @@ main()
 
   test('Review the last workday', ()
   {
-    var sut = WorkdayReviewProgress();
+    var sut = CreateSut();
 
     sut.PreviousNew([AnotherDemoDay, DemoDay, DemoDay]);
     sut.PreviousNew([AnotherDemoDay, DemoDay, DemoDay]);
@@ -49,3 +49,5 @@ main()
     expect(sut.Current([AnotherDemoDay, DemoDay, DemoDay]), AnotherDemoDay);
   });
 }
+
+WorkdayReviewProgress CreateSut() => WorkdayReviewProgress();

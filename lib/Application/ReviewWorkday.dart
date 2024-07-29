@@ -12,15 +12,20 @@ class ReviewWorkday {
   }
 
   Future<void> Previous() async {
-    view.Review(progress.Previous(await repository.Load()));
+    progress.PreviousNew(await repository.Load());
+    view.Review(progress.Current(await repository.Load()));
   }
 
   Future<void> Next() async {
+    if (progress.DidFinished(await repository.Load())) return;
+    
+    progress.NextNew(await repository.Load());
+    
     if (progress.DidFinished(await repository.Load())) {
       view.ExitReview();
       return;
     }
 
-    view.Review(progress.Next(await repository.Load()));
+    view.Review(progress.Current(await repository.Load()));
   }
 }

@@ -71,7 +71,6 @@ main() {
     await ReviewOf([DemoDay], mockView).Next();
 
     expect(mockView.ShownWorkday, null);
-    expect(mockView.DidExit, isTrue);
   });
 }
 
