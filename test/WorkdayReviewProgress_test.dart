@@ -37,4 +37,15 @@ main()
 
     expect(sut.Current([DemoDay]), DemoDay);
   });
+
+  test('Review the last workday', ()
+  {
+    var sut = WorkdayReviewProgress();
+
+    sut.PreviousNew([AnotherDemoDay, DemoDay, DemoDay]);
+    sut.PreviousNew([AnotherDemoDay, DemoDay, DemoDay]);
+    sut.PreviousNew([AnotherDemoDay, DemoDay, DemoDay]);
+
+    expect(sut.Current([AnotherDemoDay, DemoDay, DemoDay]), AnotherDemoDay);
+  });
 }

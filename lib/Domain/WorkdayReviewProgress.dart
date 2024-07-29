@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:kaizen/Domain/KaizenDomain.dart';
 
 class WorkdayReviewProgress
@@ -12,6 +10,13 @@ class WorkdayReviewProgress
     if(index == 0) return fromWorkdays[0];
     
     return fromWorkdays[--index];
+  }
+  
+  void PreviousNew(List<Workday> fromWorkdays)
+  {
+    if(index == -1) index = fromWorkdays.length;
+    
+    index--;    
   }
   
   Workday Next(List<Workday> fromWorkdays)
