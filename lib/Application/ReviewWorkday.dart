@@ -17,11 +17,11 @@ class ReviewWorkday {
   }
 
   Future<void> Next() async {
-    if (progress.DidFinished(await repository.Load())) return;
+    if (progress.DidFinish(await repository.Load())) return;
     
     progress.NextNew(await repository.Load());
     
-    if (progress.DidFinished(await repository.Load())) {
+    if (progress.DidFinish(await repository.Load())) {
       view.ExitReview();
       return;
     }

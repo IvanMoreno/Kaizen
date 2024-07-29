@@ -21,18 +21,18 @@ class WorkdayReviewProgress
   
   Workday Next(List<Workday> fromWorkdays)
   {
-    assert(!DidFinished(fromWorkdays));
+    assert(!DidFinish(fromWorkdays));
     
     return fromWorkdays[++index];
   }
   
   void NextNew(List<Workday> fromWorkdays) {
-    assert(!DidFinished(fromWorkdays));
+    assert(!DidFinish(fromWorkdays));
     
     index--;
   }
   
   Workday Current(List<Workday> list) => list.reversed.elementAt(index);
 
-  bool DidFinished(List<Workday> fromWorkdays) => index < 0;
+  bool DidFinish(List<Workday> fromWorkdays) => index < 0;
 }
