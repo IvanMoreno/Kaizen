@@ -28,4 +28,13 @@ main()
 
     expect(sut.DidFinished([DemoDay]), isTrue);
   });
+  
+  test('Review a workday', ()
+  {
+    var sut = WorkdayReviewProgress();
+
+    sut.Previous([DemoDay]);
+
+    expect(sut.Current([DemoDay]), DemoDay);
+  });
 }
