@@ -14,10 +14,9 @@ class WorkdayReviewProgress
   
   void PreviousNew(List<Workday> fromWorkdays)
   {
-    if(index == 0) return;
-    if(index == -1) index = fromWorkdays.length;
-    
-    index--;    
+    if(index == fromWorkdays.length - 1) return;
+
+    index++;
   }
   
   Workday Next(List<Workday> fromWorkdays)
@@ -30,10 +29,10 @@ class WorkdayReviewProgress
   void NextNew(List<Workday> fromWorkdays) {
     assert(!DidFinished(fromWorkdays));
     
-    index++;
+    index--;
   }
   
-  Workday Current(List<Workday> list) => list[index];
+  Workday Current(List<Workday> list) => list.reversed.elementAt(index);
 
-  bool DidFinished(List<Workday> fromWorkdays) => index == fromWorkdays.length || index == -1;
+  bool DidFinished(List<Workday> fromWorkdays) => index < 0;
 }

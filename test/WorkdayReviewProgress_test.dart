@@ -48,6 +48,17 @@ main()
 
     expect(sut.Current([AnotherDemoDay, DemoDay, DemoDay]), AnotherDemoDay);
   });
+  
+  test('Review previous workday after adding one', ()
+  {
+    var sut = CreateSut();
+
+    sut.PreviousNew([DemoDay]);
+    sut.NextNew([DemoDay]);
+    sut.PreviousNew([DemoDay, AnotherDemoDay]);
+    
+    expect(sut.Current([DemoDay, AnotherDemoDay]), AnotherDemoDay);
+  });
 }
 
 WorkdayReviewProgress CreateSut() => WorkdayReviewProgress();
