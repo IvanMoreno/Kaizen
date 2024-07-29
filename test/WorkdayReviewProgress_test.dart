@@ -6,8 +6,7 @@ main()
 {
   test('Workday review is finished by default', ()
   {
-    expect(CreateSut().DidFinish([]), isTrue);
-    expect(CreateSut().DidFinish([DemoDay]), isTrue);
+    expect(CreateSut().DidFinish(), isTrue);
   });
   
   test('Start process after reviewing previous workday', ()
@@ -16,7 +15,7 @@ main()
     
     sut.Previous([DemoDay]);
     
-    expect(sut.DidFinish([DemoDay]), isFalse);
+    expect(sut.DidFinish(), isFalse);
   });
   
   test('Finish review process', ()
@@ -26,7 +25,7 @@ main()
     sut.Previous([DemoDay]);
     sut.Next([DemoDay]);
 
-    expect(sut.DidFinish([DemoDay]), isTrue);
+    expect(sut.DidFinish(), isTrue);
   });
   
   test('Review a workday', ()
