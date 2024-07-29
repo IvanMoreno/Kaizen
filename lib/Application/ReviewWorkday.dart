@@ -6,26 +6,30 @@ class ReviewWorkday {
   final WorkdayNavigation view;
   late WorkdayReviewProgress progress;
 
-  ReviewWorkday(this.repository, this.view)
-  {
+  ReviewWorkday(this.repository, this.view) {
     progress = WorkdayReviewProgress();
   }
 
   Future<void> Previous() async {
-    progress.Previous(await repository.Load());
-    view.Review(progress.Current(await repository.Load()));
+    progress.Update(await repository.Load());
+    progress.Previous();
+    _Review();
   }
 
   Future<void> Next() async {
     if (progress.DidFinish()) return;
-    
-    progress.Next(await repository.Load());
-    
+
+    progress.Update(await repository.Load());
+    progress.Next();
+    _Review();
+  }
+
+  void _Review() {
     if (progress.DidFinish()) {
       view.ExitReview();
       return;
     }
 
-    view.Review(progress.Current(await repository.Load()));
+    view.Review(progress.Current());
   }
 }

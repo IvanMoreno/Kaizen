@@ -13,7 +13,8 @@ main()
   {
     var sut = CreateSut();
     
-    sut.Previous([DemoDay]);
+    sut.Update([DemoDay]);
+    sut.Previous();
     
     expect(sut.DidFinish(), isFalse);
   });
@@ -22,8 +23,9 @@ main()
   {
     var sut = CreateSut();
 
-    sut.Previous([DemoDay]);
-    sut.Next([DemoDay]);
+    sut.Update([DemoDay]);
+    sut.Previous();
+    sut.Next();
 
     expect(sut.DidFinish(), isTrue);
   });
@@ -32,31 +34,35 @@ main()
   {
     var sut = CreateSut();
 
-    sut.Previous([DemoDay]);
+    sut.Update([DemoDay]);
+    sut.Previous();
 
-    expect(sut.Current([DemoDay]), DemoDay);
+    expect(sut.Current(), DemoDay);
   });
 
   test('Review the last workday', ()
   {
     var sut = CreateSut();
 
-    sut.Previous([AnotherDemoDay, DemoDay, DemoDay]);
-    sut.Previous([AnotherDemoDay, DemoDay, DemoDay]);
-    sut.Previous([AnotherDemoDay, DemoDay, DemoDay]);
+    sut.Update([AnotherDemoDay, DemoDay, DemoDay]);
+    sut.Previous();
+    sut.Previous();
+    sut.Previous();
 
-    expect(sut.Current([AnotherDemoDay, DemoDay, DemoDay]), AnotherDemoDay);
+    expect(sut.Current(), AnotherDemoDay);
   });
   
   test('Review previous workday after adding one', ()
   {
     var sut = CreateSut();
 
-    sut.Previous([DemoDay]);
-    sut.Next([DemoDay]);
-    sut.Previous([DemoDay, AnotherDemoDay]);
+    sut.Update([DemoDay]);
+    sut.Previous();
+    sut.Next();
+    sut.Update([DemoDay, AnotherDemoDay]);
+    sut.Previous();
     
-    expect(sut.Current([DemoDay, AnotherDemoDay]), AnotherDemoDay);
+    expect(sut.Current(), AnotherDemoDay);
   });
 }
 
